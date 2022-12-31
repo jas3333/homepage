@@ -6,6 +6,9 @@ import Linux from './pages/Linux';
 import Login from './pages/Login';
 import Apps from './pages/Apps';
 import Home from './pages/Home';
+import Clubhouse from './pages/Clubhouse';
+import CreateUser from './pages/CreateUser';
+import Admin from './pages/Admin';
 
 function App() {
     return (
@@ -18,6 +21,9 @@ function App() {
                     <Route path='/linux' element={<Linux />} />
                     <Route path='/programming' element={<Programming />} />
                     <Route path='/login' element={<Login />} />
+                    <Route path='/clubhouse' element={<Clubhouse />} />
+                    <Route path='/createUser' element={<CreateUser />} />
+                    <Route path='/admin' element={<Admin />} />
                 </Routes>
             </Router>
         </div>

@@ -37,19 +37,17 @@ const loginUser = async (req, res) => {
     }
 
     const user = await User.findOne({ username });
-    if (user && (await bcrypt.compare(password, user.password))) {
-        res.json({
-            _id: user.id,
-            username: user.username,
-            token: generateJWT(user.id),
-        });
-    }
 
-    res.status(200).json({ message: 'Logging in user' });
+    if (user && (await bcrypt.compare(password, user.password))) {
+        res.status(200).json({ _id: user.id, token: generateJWT(user.id, user.role) });
+    } else {
+        res.status(400);
+        throw new Error('Invalid credentials');
+    }
 };
 
 const getAllUsers = async (req, res) => {
-    const allUsers = await User.find({});
+    const allUsers = await User.find({}).select('-password');
 
     res.status(200).json({ allUsers });
 };
@@ -69,8 +67,8 @@ const updateUser = async (req, res) => {
     res.status(200).json({ message: 'Updating user' });
 };
 
-const generateJWT = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '15d' });
+const generateJWT = (id, role) => {
+    return jwt.sign({ _id: id, role: role }, process.env.JWT_SECRET, { expiresIn: '15d' });
 };
 
 export { createUser, loginUser, deleteUser, getAllUsers, updateUser };
