@@ -19,7 +19,6 @@ const CreateUser = () => {
 
         try {
             const response = await axios.post('http://localhost:5012/api/v1/users', userPackage);
-            console.log(response.data);
         } catch (error) {
             console.log(error.response);
         }
@@ -27,12 +26,12 @@ const CreateUser = () => {
 
     useEffect(() => {
         if (!isAdmin) {
-            navigate('/login');
+            navigate('/');
         }
     }, [isAdmin, navigate]);
 
     return (
-        <div className='container-col mg-top-vlg auto border pad-lg radius-md'>
+        <div className='container-col mg-top-vlg auto border pad-lg radius-md size-sm'>
             <h2 className='text-center'>Create User</h2>
             <div className='underline-full'></div>
 
@@ -43,7 +42,7 @@ const CreateUser = () => {
                     name='username'
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
-                    className='input-text'
+                    className='input-text-md'
                     placeholder='Enter username'
                 />
                 <label className='mg-top-sm'>Password:</label>
@@ -52,10 +51,10 @@ const CreateUser = () => {
                     name='password'
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className='input-text'
+                    className='input-text-md'
                     placeholder='Enter password'
                 />
-                <button className='btn btn-h-md full mg-top-md mg-bot-lg'>Create User</button>
+                <button className='btn btn-h-md full mg-top-lg mg-bot-lg'>Create User</button>
             </form>
         </div>
     );

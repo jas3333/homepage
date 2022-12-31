@@ -85,7 +85,7 @@ li {
 /* │           Input            │ */
 /* ╰────────────────────────────╯ */
 .input-text {
-    height: 28px;
+    height: 30px;
     padding: 5px;
     border-radius: 5px;
     border: none;
@@ -96,7 +96,7 @@ li {
 
 .input-text-md {
     height: 35px;
-    padding: 5px;
+    padding: 9px;
     border-radius: 5px;
     border: none;
 }

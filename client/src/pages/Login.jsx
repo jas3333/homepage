@@ -17,8 +17,9 @@ const Login = () => {
 
         try {
             const response = await axios.post('http://localhost:5012/api/v1/users/login', userPack);
+            console.log(response.data);
             const { token } = response.data;
-            setUser({ token });
+            setUser({ username: response.data.username, token });
             localStorage.setItem('key', JSON.stringify({ username, token }));
             navigate('/clubhouse');
         } catch (error) {

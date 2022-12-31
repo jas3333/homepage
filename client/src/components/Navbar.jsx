@@ -1,7 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../hooks/context';
-import adminCheck from '../utils/adminCheck';
-import { useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
@@ -45,7 +43,7 @@ const Navbar = () => {
                     </Link>
                 )}
 
-                {!user.token && (
+                {!isAdmin && !isUser && (
                     <Link className='nav-links mg-right-md' to='/login'>
                         Login
                     </Link>

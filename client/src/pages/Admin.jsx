@@ -22,7 +22,7 @@ const Admin = () => {
 
     useEffect(() => {
         if (!isAdmin) {
-            navigate('/login');
+            navigate('/');
         }
     });
 
@@ -31,7 +31,7 @@ const Admin = () => {
     }, []);
 
     return (
-        <div className='container-col mg-top-vlg auto border pad-lg radius-md'>
+        <div className='container-col mg-top-vlg auto border pad-lg radius-md fifty'>
             <h1>Welcome admin {user.username}</h1>
             <div className='underline-full'></div>
             <div className='container-col'>
