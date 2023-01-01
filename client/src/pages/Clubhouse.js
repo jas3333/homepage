@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 
 const Clubhouse = () => {
     const navigate = useNavigate();
-    const [showSidebar, setShowSidebar] = useState(true);
+    const [showSidebar, setShowSidebar] = useState(false);
     const { isAdmin, isUser } = useAuth();
 
     useEffect(() => {

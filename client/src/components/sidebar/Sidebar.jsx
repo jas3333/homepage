@@ -1,14 +1,17 @@
 import React from 'react';
-import { FaFolder, FaCookie, FaWpforms, FaNewspaper, FaLightbulb } from 'react-icons/fa';
+import { FaFolder, FaCookie, FaWpforms, FaNewspaper, FaLightbulb, FaCog } from 'react-icons/fa';
 import { BsMenuAppFill } from 'react-icons/bs';
+import { AiOutlineUserDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
+    const { isAdmin, isUser } = useAuth();
     return (
         <div
             className={`${showSidebar ? 'sidebar' : 'sidebar sidebar-offscreen'}`}
-            // onMouseOver={() => setShowSidebar(true)}
-            // onMouseOut={() => setShowSidebar(false)}
+            onMouseOver={() => setShowSidebar(true)}
+            onMouseOut={() => setShowSidebar(false)}
         >
             <h1>Sidebar</h1>
             <div className='underline-full'></div>
@@ -33,9 +36,23 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 <FaNewspaper className='mg-right-sm' />
                 <Link className='nav-links'>News</Link>
             </div>
+
+            {isUser && (
+                <div className='container align '>
+                    <FaLightbulb className='mg-right-sm' />
+                    <Link className='nav-links'>Request Features</Link>
+                </div>
+            )}
+
+            {isAdmin && (
+                <div className='container align '>
+                    <AiOutlineUserDelete className='mg-right-sm' />
+                    <Link className='nav-links'>Remove Users</Link>
+                </div>
+            )}
             <div className='container align '>
-                <FaLightbulb className='mg-right-sm' />
-                <Link className='nav-links'>Request Features</Link>
+                <FaCog className='mg-right-sm' />
+                <Link className='nav-links'>Settings</Link>
             </div>
         </div>
     );
