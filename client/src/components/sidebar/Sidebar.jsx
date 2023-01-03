@@ -50,6 +50,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     <Link className='nav-links'>Remove Users</Link>
                 </div>
             )}
+            {isAdmin && (
+                <div className='container align '>
+                    <AiOutlineUserDelete className='mg-right-sm' />
+                    <Link className='nav-links' to='/editor'>
+                        Create Article
+                    </Link>
+                </div>
+            )}
             <div className='container align '>
                 <FaCog className='mg-right-sm' />
                 <Link className='nav-links'>Settings</Link>

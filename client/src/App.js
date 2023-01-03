@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Clubhouse from './pages/Clubhouse';
 import CreateUser from './pages/CreateUser';
 import Admin from './pages/Admin';
+import Editor from './pages/Editor';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path='/clubhouse' element={<Clubhouse />} />
                     <Route path='/createUser' element={<CreateUser />} />
                     <Route path='/admin' element={<Admin />} />
+                    <Route path='/editor' element={<Editor />} />
                 </Routes>
             </Router>
         </div>
