@@ -31,18 +31,18 @@ const CreateUser = () => {
     }, [isAdmin, navigate]);
 
     return (
-        <div className='container-col mg-top-vlg auto border pad-lg radius-md size-sm'>
+        <div className='container-col mg-top-vlg auto border pad-vlg radius-md w-350 h-500'>
             <h2 className='text-center'>Create User</h2>
             <div className='underline-full'></div>
 
             <form className='container-col' onSubmit={onSubmit}>
-                <label className='mg-top-sm'>Username:</label>
+                <label className='mg-top-lg'>Username:</label>
                 <input
                     type='text'
                     name='username'
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
-                    className='input-text-md'
+                    className='input-text-md h-40'
                     placeholder='Enter username'
                 />
                 <label className='mg-top-sm'>Password:</label>
@@ -51,10 +51,10 @@ const CreateUser = () => {
                     name='password'
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className='input-text-md'
+                    className='input-text-md h-40'
                     placeholder='Enter password'
                 />
-                <button className='btn btn-h-md full mg-top-lg mg-bot-lg'>Create User</button>
+                <button className='btn full mg-top-lg h-50 '>Create User</button>
             </form>
         </div>
     );

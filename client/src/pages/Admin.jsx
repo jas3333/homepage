@@ -14,7 +14,8 @@ const Admin = () => {
     const getUsers = async () => {
         try {
             const response = await axios.get('http://localhost:5012/api/v1/users/');
-            setUserList(response.data.allUsers);
+            const users = response.data.allUsers;
+            setUserList(users.filter((user) => user.role !== 'admin'));
         } catch (error) {
             console.log(error);
         }
@@ -24,7 +25,7 @@ const Admin = () => {
         if (!isAdmin) {
             navigate('/');
         }
-    });
+    }, [isAdmin, navigate]);
 
     useEffect(() => {
         getUsers();
