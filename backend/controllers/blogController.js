@@ -18,4 +18,4 @@ const deleteBlog = async (req, res) => {
     res.status(200).json({ message: 'Blog deleted' });
 };
 
-export default { createBlog, getBlogs, getBlog, updateBlog, deleteBlog };
+export { createBlog, getBlogs, getBlog, updateBlog, deleteBlog };

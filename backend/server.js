@@ -4,6 +4,7 @@ dotenv.config();
 
 import express from 'express';
 import userRouter from './routes/userRoutes.js';
+import blogRouter from './routes/blogRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
 import connectDB from './config/db.js';
 
@@ -12,6 +13,7 @@ app.use(express.json());
 connectDB();
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/blog', blogRouter);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5012;
