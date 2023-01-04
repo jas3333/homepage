@@ -19,7 +19,8 @@ const Login = () => {
             const response = await axios.post('http://localhost:5012/api/v1/users/login', userPack);
             console.log(response.data);
             const { token } = response.data;
-            setUser({ username: response.data.username, token });
+            setUser({ _id: response.data._id, username: response.data.username, token });
+            console.log(user);
             localStorage.setItem('key', JSON.stringify({ username, token }));
             navigate('/clubhouse');
         } catch (error) {
@@ -27,27 +28,27 @@ const Login = () => {
         }
     };
     return (
-        <div className='container-col mg-top-vlg auto border pad-lg radius-md size-sm'>
+        <div className='container-col mg-top-vlg auto border pad-lg radius-md w-350 h-500'>
             <h1 className='text-center'>Login</h1>
             <div className='underline-full'></div>
             <form className='container-col ' onSubmit={handleSubmit}>
-                <p className='mg-top-sm'>Username:</p>
+                <p className='mg-top-lg'>Username:</p>
                 <input
                     type='text'
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
-                    className='input-text-md '
+                    className='input-text-md h-50'
                     placeholder='Enter username'
                 />
-                <p className='mg-top-sm'>Password:</p>
+                <p className='mg-top-md'>Password:</p>
                 <input
                     type='password'
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className='input-text-md '
+                    className='input-text-md h-50'
                     placeholder='Enter password'
                 />
-                <button className='btn full mg-top-md mg-bot-md btn-h-md'>Login</button>
+                <button className='btn full mg-top-lg mg-bot-md h-60'>Login</button>
             </form>
         </div>
     );
