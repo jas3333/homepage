@@ -258,6 +258,18 @@ a:hover {
     transform: translateX(-90%);
 }
 
+.error {
+    background-color: #ff8080;
+    color: #cc0000;
+    position: absolute;
+    top: 90%;
+    right: 2%;
+    transition: ease 400ms all;
+}
+.error-offscreen {
+    transform: translateX(100%);
+}
+
 /* ╭────────────────────────────╮ */
 /* │ Decorations                │ */
 /* ╰────────────────────────────╯ */

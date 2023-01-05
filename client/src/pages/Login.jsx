@@ -3,12 +3,16 @@ import { useState } from 'react';
 import { useGlobalContext } from '../hooks/context';
 import { useNavigate } from 'react-router-dom';
 
+import Error from './../components/Error';
+
 const Login = () => {
     const navigate = useNavigate();
     const { user, setUser } = useGlobalContext();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -17,14 +21,14 @@ const Login = () => {
 
         try {
             const response = await axios.post('http://localhost:5012/api/v1/users/login', userPack);
-            console.log(response.data);
             const { token } = response.data;
             setUser({ _id: response.data._id, username: response.data.username, token });
-            console.log(user);
             localStorage.setItem('key', JSON.stringify({ username, token }));
             navigate('/clubhouse');
         } catch (error) {
             console.log(error.response);
+            setErrorMessage(error.response.data.message);
+            setShowError(true);
         }
     };
     return (
@@ -50,6 +54,7 @@ const Login = () => {
                 />
                 <button className='btn full mg-top-lg mg-bot-md h-60'>Login</button>
             </form>
+            {showError && <Error errorMessage={errorMessage} setShowError={setShowError} />}
         </div>
     );
 };
