@@ -31,7 +31,7 @@ const CreateUser = () => {
     }, [isAdmin, navigate]);
 
     return (
-        <div className='container-col mg-top-vlg auto border pad-vlg radius-md w-350 h-500'>
+        <div className='container-col mg-top-vlg auto border pad-vlg radius-md w-400 h-500'>
             <h2 className='text-center'>Create User</h2>
             <div className='underline-full'></div>
 
