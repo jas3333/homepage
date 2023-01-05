@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 
+import Error from './../components/Error';
+
 const CreateUser = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const { isAdmin } = useAuth();
 
     const navigate = useNavigate();
@@ -21,6 +25,8 @@ const CreateUser = () => {
             const response = await axios.post('http://localhost:5012/api/v1/users', userPackage);
         } catch (error) {
             console.log(error.response);
+            setErrorMessage(error.response.data.message);
+            setShowError(true);
         }
     };
 
@@ -56,6 +62,7 @@ const CreateUser = () => {
                 />
                 <button className='btn full mg-top-lg h-50 '>Create User</button>
             </form>
+            {showError && <Error errorMessage={errorMessage} setShowError={setShowError} />}
         </div>
     );
 };

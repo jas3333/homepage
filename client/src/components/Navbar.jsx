@@ -31,17 +31,6 @@ const Navbar = () => {
                 <Link className='nav-links mg-right-md' to='/programming'>
                     Programming
                 </Link>
-                {isAdmin && (
-                    <Link className='nav-links mg-right-md' to='/admin'>
-                        Admin
-                    </Link>
-                )}
-
-                {isAdmin && (
-                    <Link className='nav-links mg-right-md' to='/createUser'>
-                        Create User
-                    </Link>
-                )}
 
                 {!isAdmin && !isUser && (
                     <Link className='nav-links mg-right-md' to='/login'>
