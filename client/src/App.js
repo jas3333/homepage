@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { useState } from 'react';
 import Programming from './pages/Programming';
 import Navbar from './components/Navbar';
 import Linux from './pages/Linux';
@@ -10,12 +11,16 @@ import Clubhouse from './pages/Clubhouse';
 import CreateUser from './pages/CreateUser';
 import Admin from './pages/Admin';
 import Editor from './pages/Editor';
+import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
+    const [showSidebar, setShowSidebar] = useState(false);
+
     return (
         <div className='container'>
             <Router>
                 <Navbar />
+                <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/apps' element={<Apps />} />

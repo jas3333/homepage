@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaFolder, FaCookie, FaWpforms, FaNewspaper, FaLightbulb, FaCog } from 'react-icons/fa';
+import { FaFolder, FaCookie, FaWpforms, FaNewspaper, FaLightbulb, FaCog, FaPen, FaRegUser } from 'react-icons/fa';
 import { BsMenuAppFill } from 'react-icons/bs';
 import { AiOutlineUserDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -43,16 +42,26 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     <Link className='nav-links'>Request Features</Link>
                 </div>
             )}
+            {isAdmin && (
+                <div className='container align '>
+                    <FaRegUser className='mg-right-sm' />
+                    <Link className='nav-links' to='/createUser'>
+                        Create User
+                    </Link>
+                </div>
+            )}
 
             {isAdmin && (
                 <div className='container align '>
                     <AiOutlineUserDelete className='mg-right-sm' />
-                    <Link className='nav-links'>Remove Users</Link>
+                    <Link className='nav-links' to='/admin'>
+                        Remove Users
+                    </Link>
                 </div>
             )}
             {isAdmin && (
                 <div className='container align '>
-                    <AiOutlineUserDelete className='mg-right-sm' />
+                    <FaPen className='mg-right-sm' />
                     <Link className='nav-links' to='/editor'>
                         Create Article
                     </Link>

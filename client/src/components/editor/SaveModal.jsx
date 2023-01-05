@@ -35,11 +35,20 @@ const SaveModal = ({ setShowModal, text }) => {
                         className='input-text h-40'
                         placeholder='Enter title'
                     />
-                    <select className='select mg-top-md '>
+                    <label htmlFor='' className='mg-top-md'>
+                        Category:
+                    </label>
+                    <select className='select '>
                         <option value='linux'>Linux</option>
                         <option value='programming'>Programming</option>
                     </select>
-                    <button className='btn btn-h-md auto mg-top-lg'>Save</button>
+
+                    <div className='container auto'>
+                        <button className='btn btn-h-md mg-right-md mg-top-lg'>Save</button>
+                        <button className='btn btn-h-md mg-top-lg' onClick={() => setShowModal(false)}>
+                            Cancel
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

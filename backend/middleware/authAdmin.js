@@ -13,13 +13,12 @@ const admin = async (req, res, next) => {
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const user = await User.findById(decoded.id).select('-password');
+        req.user = await User.findById(decoded._id).select('-password');
 
-        if (user.role !== 'admin') {
+        if (req.user.role !== 'admin') {
             res.status(401);
             throw new Error('Not authorized');
         }
-        req.user = user;
         next();
     } catch (error) {
         res.status(401);
