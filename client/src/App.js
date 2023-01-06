@@ -24,8 +24,6 @@ function App() {
             <Router>
                 <Navbar />
                 {(isUser || isAdmin) && <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />}
-
-                <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/apps' element={<Apps />} />
