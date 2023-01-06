@@ -4,7 +4,7 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const MarkDownDisplay = ({ text }) => {
     return (
-        <div className='container-col mg-left-md shadow w-1100 pad-lg radius-md'>
+        <div className='container-col mg-left-md shadow w-800 pad-lg radius-md'>
             <ReactMarkdown
                 children={text}
                 components={{

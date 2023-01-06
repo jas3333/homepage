@@ -4,7 +4,7 @@ const TextArea = ({ text, setText }) => {
             <form>
                 <textarea
                     rows='40'
-                    cols='80'
+                    cols='60'
                     value={text}
                     className='bg-dark-grey fc-light font-sm text-area'
                     onChange={(event) => setText(event.target.value)}
