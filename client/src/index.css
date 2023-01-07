@@ -546,6 +546,7 @@ a:hover {
 
 .h-500 {
     height: 500px;
+    max-height: 500px;
 }
 
 .h-600 {

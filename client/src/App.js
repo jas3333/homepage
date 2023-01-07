@@ -15,15 +15,13 @@ import Sidebar from './components/sidebar/Sidebar';
 import useAuth from './hooks/useAuth';
 
 function App() {
-    const [showSidebar, setShowSidebar] = useState(false);
-
     const { isAdmin, isUser } = useAuth();
 
     return (
-        <div className='container'>
+        <div className='container '>
             <Router>
                 <Navbar />
-                {(isUser || isAdmin) && <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />}
+                {(isUser || isAdmin) && <Sidebar />}
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/apps' element={<Apps />} />

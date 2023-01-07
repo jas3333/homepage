@@ -1,39 +1,19 @@
-import { FaFolder, FaCookie, FaWpforms, FaNewspaper, FaLightbulb, FaCog, FaPen, FaRegUser } from 'react-icons/fa';
-import { BsMenuAppFill } from 'react-icons/bs';
+import { FaFolder, FaLightbulb, FaPen, FaRegUser } from 'react-icons/fa';
 import { AiOutlineUserDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { useGlobalContext } from '../../hooks/context';
 
-const Sidebar = ({ showSidebar, setShowSidebar }) => {
+const Sidebar = () => {
+    const { user } = useGlobalContext();
     const { isAdmin, isUser } = useAuth();
     return (
-        <div
-            className={`${showSidebar ? 'sidebar' : 'sidebar sidebar-offscreen'}`}
-            onMouseOver={() => setShowSidebar(true)}
-            onMouseOut={() => setShowSidebar(false)}
-        >
-            <h1>Sidebar</h1>
+        <div className='container-col mg-top-vlg border pad-lg radius-md mg-left-md h-300'>
+            <h2>Hello, {user.username}</h2>
             <div className='underline-full'></div>
             <div className='container align '>
                 <FaFolder className='mg-right-sm' />
                 <Link className='nav-links'>Files</Link>
-            </div>
-
-            <div className='container align '>
-                <FaCookie className='mg-right-sm' />
-                <Link className='nav-links'>Recipes</Link>
-            </div>
-            <div className='container align '>
-                <BsMenuAppFill className='mg-right-sm' />
-                <Link className='nav-links'>Apps</Link>
-            </div>
-            <div className='container align '>
-                <FaWpforms className='mg-right-sm' />
-                <Link className='nav-links'>Posts</Link>
-            </div>
-            <div className='container align '>
-                <FaNewspaper className='mg-right-sm' />
-                <Link className='nav-links'>News</Link>
             </div>
 
             {isUser && (
@@ -67,10 +47,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     </Link>
                 </div>
             )}
-            <div className='container align '>
-                <FaCog className='mg-right-sm' />
-                <Link className='nav-links'>Settings</Link>
-            </div>
         </div>
     );
 };
