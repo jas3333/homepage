@@ -35,7 +35,7 @@ const Sidebar = () => {
                 <div className='container align '>
                     <AiOutlineUserDelete className='mg-right-sm' />
                     <Link className='nav-links' to='/admin'>
-                        Remove Users
+                        Admin
                     </Link>
                 </div>
             )}

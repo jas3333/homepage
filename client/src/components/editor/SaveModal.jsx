@@ -7,10 +7,11 @@ import { AiOutlineClose } from 'react-icons/ai';
 const SaveModal = ({ setShowModal, text }) => {
     const { user } = useGlobalContext();
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('linux');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const dataPack = { title, text, _id: user._id };
+        const dataPack = { id: user._id, title, text, category };
 
         try {
             const response = await axios.post('http://localhost:5012/api/v1/blog', dataPack);
@@ -38,7 +39,7 @@ const SaveModal = ({ setShowModal, text }) => {
                     <label htmlFor='' className='mg-top-md'>
                         Category:
                     </label>
-                    <select className='select '>
+                    <select className='select ' onChange={(event) => setCategory(event.target.value)}>
                         <option value='linux'>Linux</option>
                         <option value='programming'>Programming</option>
                     </select>
