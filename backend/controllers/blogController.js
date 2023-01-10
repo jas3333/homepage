@@ -9,7 +9,8 @@ const createBlog = async (req, res) => {
 };
 
 const getBlogs = async (req, res) => {
-    res.status(200).json({ message: 'Blogs retrieved' });
+    const blogs = await Blog.find({});
+    res.status(200).json(blogs);
 };
 
 const getBlog = async (req, res) => {
