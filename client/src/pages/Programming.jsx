@@ -22,7 +22,7 @@ const Programming = () => {
     }, []);
 
     return (
-        <div className='container mg-top-vlg auto'>
+        <div className='container mg-top-vlg auto '>
             {blogs.map((blog) => (
                 <Blog {...blog} />
             ))}

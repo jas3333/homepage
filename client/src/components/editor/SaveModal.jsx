@@ -11,7 +11,8 @@ const SaveModal = ({ setShowModal, text }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const dataPack = { id: user._id, title, text, category };
+        const dataPack = { user: user._id, title, text, category };
+        console.log(dataPack);
 
         try {
             const response = await axios.post('http://localhost:5012/api/v1/blog', dataPack);

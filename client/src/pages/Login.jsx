@@ -23,7 +23,8 @@ const Login = () => {
             const response = await axios.post('http://localhost:5012/api/v1/users/login', userPack);
             const { token } = response.data;
             setUser({ _id: response.data._id, username: response.data.username, token });
-            localStorage.setItem('key', JSON.stringify({ username, token }));
+            localStorage.setItem('key', JSON.stringify({ _id: response.data._id, username, token }));
+            console.log(user);
             navigate('/clubhouse');
         } catch (error) {
             console.log(error.response);

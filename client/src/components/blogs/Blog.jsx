@@ -4,9 +4,10 @@ import { coldarkDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const Blog = ({ title, content, category }) => {
     return (
-        <div className='container-col'>
-            <h1>{title}</h1>
-            <h2>{category}</h2>
+        <div className='container-col border w-350 h-500 shadow radius-md mg-left-lg pad-lg'>
+            <h1 className=''>{title}</h1>
+            <div className='underline-full'></div>
+            <h3 className='mg-bot-lg'>Category: {category}</h3>
             <ReactMarkdown
                 children={content}
                 components={{

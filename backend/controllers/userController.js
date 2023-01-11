@@ -39,7 +39,8 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-        res.status(200).json({ _id: user.id, username: user.username, token: generateJWT(user.id, user.role) });
+        console.log(user._id);
+        res.status(200).json({ _id: user._id, username: user.username, token: generateJWT(user.id, user.role) });
     } else {
         res.status(400);
         throw new Error('Invalid credentials');

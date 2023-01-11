@@ -1,9 +1,16 @@
 import Blog from './../models/blogModel.js';
 
 const createBlog = async (req, res) => {
-    const { title, _id, text } = req.body;
+    const { title, user, text, category } = req.body;
+    console.log(req.body);
 
-    const newBlog = await Blog.create({ user: _id, title: title, content: text, category: 'programming' });
+    const newBlog = await Blog.create({ user: user, title: title, content: text, category: category });
+    console.log(newBlog);
+
+    if (!newBlog) {
+        res.status(400);
+        throw new Error('Invalid');
+    }
 
     res.status(200).json(newBlog);
 };
