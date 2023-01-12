@@ -40,7 +40,17 @@ const loginUser = async (req, res) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         console.log(user._id);
-        res.status(200).json({ _id: user._id, username: user.username, token: generateJWT(user.id, user.role) });
+
+        const token = generateJWT(user.id, user.role);
+        const oneDay = 1000 * 60 * 60 * 24;
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + oneDay),
+            secure: process.env.NODE_ENV === 'production',
+        });
+
+        res.status(200).json({ _id: user._id, username: user.username, token });
     } else {
         res.status(400);
         throw new Error('Invalid credentials');
