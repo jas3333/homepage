@@ -3,6 +3,7 @@ import User from './../models/userModel.js';
 
 const admin = async (req, res, next) => {
     let token;
+    console.log(req.cookies);
 
     try {
         // Get token

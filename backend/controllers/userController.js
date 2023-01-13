@@ -1,6 +1,7 @@
 import User from './../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import attachCookies from '../utils/attachCookies.js';
 
 const createUser = async (req, res) => {
     const { username, password } = req.body;
@@ -42,13 +43,7 @@ const loginUser = async (req, res) => {
         console.log(user._id);
 
         const token = generateJWT(user.id, user.role);
-        const oneDay = 1000 * 60 * 60 * 24;
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            expires: new Date(Date.now() + oneDay),
-            secure: process.env.NODE_ENV === 'production',
-        });
+        attachCookies(res, token);
 
         res.status(200).json({ _id: user._id, username: user.username, token });
     } else {

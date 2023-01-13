@@ -22,7 +22,7 @@ const Admin = () => {
                 },
             };
 
-            const response = await axios.get('http://localhost:5012/api/v1/users/', config);
+            const response = await axios.get('/api/v1/users/', config);
             const users = response.data.allUsers;
             setUserList(users.filter((user) => user.role !== 'admin'));
         } catch (error) {

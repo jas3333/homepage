@@ -11,7 +11,7 @@ const RemoveUserModal = ({ setShowModal, username, _id, userList, setUserList })
                     Authorization: `Bearer ${user.token}`,
                 },
             };
-            const response = await axios.delete(`http://localhost:5012/api/v1/users/${_id}`, config);
+            const response = await axios.delete(`/api/v1/users/${_id}`, config);
             console.log(response.data);
         } catch (error) {
             console.log(error.response);
