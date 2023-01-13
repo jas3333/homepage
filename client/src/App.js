@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Programming from './pages/Programming';
 import Navbar from './components/Navbar';
 import Linux from './pages/Linux';
@@ -12,16 +12,30 @@ import CreateUser from './pages/CreateUser';
 import Admin from './pages/Admin';
 import Editor from './pages/Editor';
 import Sidebar from './components/sidebar/Sidebar';
-import useAuth from './hooks/useAuth';
+import { useGlobalContext } from './hooks/context';
 
 function App() {
-    const { isAdmin, isUser } = useAuth();
+    const { user, setUser } = useGlobalContext();
+
+    const getCurrentUser = async () => {
+        try {
+            const response = await axios.get('/api/v1/users/getCurrentUser');
+            setUser(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getCurrentUser();
+    }, []);
 
     return (
         <div className='container '>
             <Router>
                 <Navbar />
-                {(isUser || isAdmin) && <Sidebar />}
+                {(user.role === 'admin' || user.role === 'user') && <Sidebar />}
+
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/apps' element={<Apps />} />

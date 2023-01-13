@@ -1,18 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../hooks/context';
-import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
     const { user, setUser } = useGlobalContext();
-    const { isAdmin, isUser } = useAuth();
 
     const navigate = useNavigate();
-
-    const logout = () => {
-        localStorage.removeItem('key');
-        setUser('');
-        navigate('/');
-    };
 
     return (
         <nav className='navbar space'>
@@ -32,19 +24,14 @@ const Navbar = () => {
                     Programming
                 </Link>
 
-                {!isAdmin && !isUser && (
+                {!user && (
                     <Link className='nav-links mg-right-md' to='/login'>
                         Login
                     </Link>
                 )}
-                {(isAdmin || isUser) && (
+                {!user && (
                     <Link className='nav-links mg-right-md' to='/clubhouse'>
                         Clubhouse
-                    </Link>
-                )}
-                {(isAdmin || isUser) && (
-                    <Link className='nav-links mg-right-md' onClick={logout}>
-                        Logout
                     </Link>
                 )}
             </div>

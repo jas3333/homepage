@@ -16,13 +16,7 @@ const Admin = () => {
 
     const getUsers = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            };
-
-            const response = await axios.get('/api/v1/users/', config);
+            const response = await axios.get('/api/v1/users/');
             const users = response.data.allUsers;
             setUserList(users.filter((user) => user.role !== 'admin'));
         } catch (error) {

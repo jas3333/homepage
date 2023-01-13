@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
 
     const user = await User.create({ username, password: hashedPassword });
     if (user) {
-        res.status(200).json({ _id: user.id, username: user.username, token: generateJWT(user.id) });
+        res.status(200).json({ _id: user.id, username: user.username });
     } else {
         res.status(400);
         throw new Error('Invalid user data');
@@ -44,8 +44,7 @@ const loginUser = async (req, res) => {
 
         const token = generateJWT(user.id, user.role);
         attachCookies(res, token);
-
-        res.status(200).json({ _id: user._id, username: user.username, token });
+        res.status(200).json({ _id: user._id, username: user.username, role: user.role });
     } else {
         res.status(400);
         throw new Error('Invalid credentials');
@@ -73,8 +72,13 @@ const updateUser = async (req, res) => {
     res.status(200).json({ message: 'Updating user' });
 };
 
+const getCurrentUser = async (req, res) => {
+    const user = await User.findOne(req.username);
+    res.status(200).json({ _id: user._id, username: user.username, role: user.role });
+};
+
 const generateJWT = (id, role) => {
     return jwt.sign({ _id: id, role: role }, process.env.JWT_SECRET, { expiresIn: '15d' });
 };
 
-export { createUser, loginUser, deleteUser, getAllUsers, updateUser };
+export { createUser, loginUser, deleteUser, getAllUsers, updateUser, getCurrentUser };
