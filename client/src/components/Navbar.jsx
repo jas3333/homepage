@@ -1,17 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useGlobalContext } from '../hooks/context';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    const { user, setUser } = useGlobalContext();
-
-    const navigate = useNavigate();
-
     return (
         <nav className='navbar space'>
             <div className='container'>
-                <Link to='/'>
-                    <h1>Hello {user.username}</h1>
-                </Link>
+                <Link to='/'></Link>
             </div>
             <div className='container'>
                 <Link className='nav-links mg-right-md' to='/apps'>
@@ -24,16 +17,12 @@ const Navbar = () => {
                     Programming
                 </Link>
 
-                {!user && (
-                    <Link className='nav-links mg-right-md' to='/login'>
-                        Login
-                    </Link>
-                )}
-                {!user && (
-                    <Link className='nav-links mg-right-md' to='/clubhouse'>
-                        Clubhouse
-                    </Link>
-                )}
+                <Link className='nav-links mg-right-md' to='/login'>
+                    Login
+                </Link>
+                <Link className='nav-links mg-right-md' to='/clubhouse'>
+                    Clubhouse
+                </Link>
             </div>
         </nav>
     );

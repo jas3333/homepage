@@ -1,28 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useGlobalContext } from './../../hooks/context';
 
 import { AiOutlineClose } from 'react-icons/ai';
 
 const SaveModal = ({ setShowModal, text }) => {
-    const { user } = useGlobalContext();
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('linux');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const dataPack = { user: user._id, title, text, category };
-        console.log(dataPack);
-
-        try {
-            const response = await axios.post('http://localhost:5012/api/v1/blog', dataPack);
-            console.log(response.data);
-        } catch (error) {
-            console.log(error.response);
-        }
-
-        setShowModal(false);
-    };
+    const handleSubmit = async () => {};
 
     return (
         <div className='overlay'>

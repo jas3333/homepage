@@ -1,17 +1,10 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import axios from 'axios';
-import { useGlobalContext } from '../../hooks/context';
 
 const RemoveUserModal = ({ setShowModal, username, _id, userList, setUserList }) => {
-    const { user } = useGlobalContext();
     const removeUser = async () => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                },
-            };
-            const response = await axios.delete(`/api/v1/users/${_id}`, config);
+            const response = await axios.delete(`/api/v1/users/${_id}`);
             console.log(response.data);
         } catch (error) {
             console.log(error.response);

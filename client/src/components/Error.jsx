@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import { useAppContext } from '../hooks/appContext';
 
-const Error = ({ errorMessage, setShowError }) => {
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setShowError(false);
-        }, 3000);
-        return () => clearTimeout(timeout);
-    }, [setShowError]);
+const Error = () => {
+    const { alertText } = useAppContext();
 
     return (
-        <div className='container error pad-lg radius-md'>
-            <h3>{errorMessage}</h3>
+        <div className='container error pad-sm radius-sm full'>
+            <p>{alertText}</p>
         </div>
     );
 };
