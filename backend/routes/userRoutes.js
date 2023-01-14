@@ -12,7 +12,7 @@ import {
 
 const router = express.Router();
 
-router.route('/').post(admin, createUser).get(admin, getAllUsers);
+router.route('/').post(createUser).get(admin, getAllUsers);
 router.route('/login').post(loginUser);
 router.route('/:id').delete(admin, deleteUser).put(protect, updateUser);
 router.route('/getCurrentUser').get(protect, getCurrentUser);

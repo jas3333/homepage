@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useAppContext } from './hooks/appContext';
+
 import Programming from './pages/Programming';
 import Navbar from './components/Navbar';
 import Linux from './pages/Linux';
@@ -10,12 +12,15 @@ import CreateUser from './pages/CreateUser';
 import Admin from './pages/Admin';
 import Editor from './pages/Editor';
 import Register from './pages/Register';
+import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
+    const { user } = useAppContext();
     return (
         <div className='container '>
             <Router>
                 <Navbar />
+                {user && <Sidebar />}
 
                 <Routes>
                     <Route path='/' element={<Home />} />

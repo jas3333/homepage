@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../hooks/appContext';
 
-import Error from './../components/Error';
+import LoginForm from '../components/login/LoginForm';
 
 const intialValues = {
     username: '',
@@ -10,8 +10,9 @@ const intialValues = {
 };
 
 const Login = () => {
-    const { showAlert, displayAlert } = useAppContext();
+    const { displayAlert, loginUser, user } = useAppContext();
     const [values, setValues] = useState(intialValues);
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,47 +21,28 @@ const Login = () => {
             displayAlert();
             return;
         }
-
-        console.log(values);
+        loginUser(values);
     };
 
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
 
+    useEffect(() => {
+        if (user) {
+            navigate('/clubhouse');
+        }
+    }, [user, navigate]);
+
+    const loginFormProps = {
+        values,
+        handleChange,
+        handleSubmit,
+    };
+
     return (
         <div className='container mg-top-vlg auto'>
-            <form className='container-col w-300 h-450 border pad-vlg radius-md' onSubmit={handleSubmit}>
-                <h1 className='text-center'>Login</h1>
-                <div className='underline-full'></div>
-                {showAlert && <Error />}
-                <label htmlFor='username' className='mg-top-md'>
-                    Username:
-                </label>
-                <input
-                    type='text'
-                    value={values.name}
-                    name='username'
-                    className='input-text pad-sm h-40'
-                    placeholder='Enter username'
-                    onChange={handleChange}
-                />
-                <label htmlFor='password' className='mg-top-md'>
-                    Password:
-                </label>
-                <input
-                    value={values.name}
-                    type='password'
-                    name='password'
-                    className='input-text pad-sm h-40'
-                    placeholder='Enter password'
-                    onChange={handleChange}
-                />
-                <button className='btn h-50 full mg-top-lg'>Login</button>
-                <Link className='text-center mg-top-md' to='/register'>
-                    Not a member? Register
-                </Link>
-            </form>
+            <LoginForm {...loginFormProps} />
         </div>
     );
 };

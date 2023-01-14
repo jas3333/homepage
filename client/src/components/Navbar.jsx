@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useAppContext } from '../hooks/appContext';
 
 const Navbar = () => {
+    const { user } = useAppContext();
     return (
         <nav className='navbar space'>
             <div className='container'>
@@ -17,9 +19,11 @@ const Navbar = () => {
                     Programming
                 </Link>
 
-                <Link className='nav-links mg-right-md' to='/login'>
-                    Login
-                </Link>
+                {!user && (
+                    <Link className='nav-links mg-right-md' to='/login'>
+                        Login
+                    </Link>
+                )}
                 <Link className='nav-links mg-right-md' to='/clubhouse'>
                     Clubhouse
                 </Link>

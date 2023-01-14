@@ -9,17 +9,18 @@ const intialValues = {
     password: '',
 };
 const Register = () => {
-    const { displayAlert, showAlert } = useAppContext();
+    const { displayAlert, showAlert, registerUser, isLoading } = useAppContext();
     const [values, setValues] = useState(intialValues);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(values);
 
         if (!values.username || !values.password) {
             displayAlert();
             return;
         }
+
+        registerUser(values);
     };
 
     const handleChange = (event) => {
@@ -53,7 +54,9 @@ const Register = () => {
                     value={values.name}
                     onChange={handleChange}
                 />
-                <button className='btn h-50 full mg-top-lg'>Register</button>
+                <button className='btn h-50 full mg-top-lg ' disabled={isLoading}>
+                    Register
+                </button>
                 <div className='container content-center mg-top-md'>
                     <Link className='' to='/login'>
                         Already a member? Login
