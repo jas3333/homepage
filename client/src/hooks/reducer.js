@@ -18,10 +18,13 @@ const reducer = (state, action) => {
         return { ...state, isLoading: true };
     }
     if (action.type === 'LOGIN_USER_SUCCESS') {
-        return { ...state, user: action.payload.username, _id: action.payload._id };
+        return { ...state, user: action.payload.username, _id: action.payload._id, role: action.payload.role };
     }
     if (action.type === 'LOGIN_USER_ERROR') {
         return { ...state, isLoading: false, showAlert: true, alertText: action.payload };
+    }
+    if (action.type === 'AUTH_CHECK_SUCCESS') {
+        return { ...state, user: action.payload.username, _id: action.payload._id, role: action.payload.role };
     }
 
     throw new Error(`no such action: ${action.type}`);

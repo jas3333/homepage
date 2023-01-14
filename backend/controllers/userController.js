@@ -73,12 +73,21 @@ const updateUser = async (req, res) => {
 };
 
 const getCurrentUser = async (req, res) => {
-    const user = await User.findOne(req.username);
+    const user = await User.findOne({ username: req.user.username });
     res.status(200).json({ _id: user._id, username: user.username, role: user.role });
+};
+
+const logout = async (req, res) => {
+    console.log('logout');
+    res.cookie('token', 'logout', {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+    });
+    res.status(200).json({ message: 'Logged out user' });
 };
 
 const generateJWT = (id, role) => {
     return jwt.sign({ _id: id, role: role }, process.env.JWT_SECRET, { expiresIn: '15d' });
 };
 
-export { createUser, loginUser, deleteUser, getAllUsers, updateUser, getCurrentUser };
+export { createUser, loginUser, deleteUser, getAllUsers, updateUser, getCurrentUser, logout };

@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
 import reducer from './reducer';
 
 const initialState = {
     isLoading: false,
+    userLoading: true,
     showAlert: false,
     alertText: '',
     alertType: '',
     user: null,
+    role: null,
     _id: null,
 };
 
@@ -51,7 +53,19 @@ const AppProvider = ({ children }) => {
         }
     };
 
-    const contextValues = { ...state, displayAlert, clearAlert, registerUser, loginUser };
+    const authCheck = async () => {
+        try {
+            const response = await axios.get('/api/v1/users/getCurrentUser');
+            console.log(response.data);
+            dispatch({ type: 'AUTH_CHECK_SUCCESS', payload: response.data });
+        } catch (error) {}
+    };
+
+    useEffect(() => {
+        authCheck();
+    }, []);
+
+    const contextValues = { ...state, displayAlert, clearAlert, registerUser, loginUser, authCheck };
 
     return <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>;
 };

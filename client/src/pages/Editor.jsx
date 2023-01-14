@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppContext } from '../hooks/appContext';
+
 import TextArea from '../components/editor/TextArea';
 import MarkDownDisplay from '../components/editor/MarkDownDisplay';
 import SaveModal from '../components/editor/SaveModal';
-import useAuth from '../hooks/useAuth';
 
 const Editor = () => {
-    const { isAdmin } = useAuth();
+    const { role } = useAppContext();
     const navigate = useNavigate();
 
     const [text, setText] = useState('');
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        if (!isAdmin) {
+        console.log('running');
+        if (role !== 'admin') {
             navigate('/');
         }
-    });
+    }, [role, navigate]);
 
     return (
         <div className='container mg-top-vlg auto'>

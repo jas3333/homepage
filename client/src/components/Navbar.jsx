@@ -3,10 +3,13 @@ import { useAppContext } from '../hooks/appContext';
 
 const Navbar = () => {
     const { user } = useAppContext();
+
     return (
         <nav className='navbar space'>
             <div className='container'>
-                <Link to='/'></Link>
+                <Link to='/'>
+                    <h3>Hello, {user}</h3>
+                </Link>
             </div>
             <div className='container'>
                 <Link className='nav-links mg-right-md' to='/apps'>
