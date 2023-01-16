@@ -52,10 +52,22 @@ const AppProvider = ({ children }) => {
             clearAlert();
         }
     };
+    const authFetch = axios.create({
+        baseURL: '/api/v1',
+    });
+
+    authFetch.interceptors.response.use(
+        (response) => {
+            return response;
+        },
+        (error) => {
+            return Promise.reject(error);
+        }
+    );
 
     const authCheck = async () => {
         try {
-            const response = await axios.get('/api/v1/users/getCurrentUser');
+            const response = await authFetch.get('/users/getCurrentUser');
             console.log(response.data);
             dispatch({ type: 'AUTH_CHECK_SUCCESS', payload: response.data });
         } catch (error) {}

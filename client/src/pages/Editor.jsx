@@ -8,18 +8,8 @@ import MarkDownDisplay from '../components/editor/MarkDownDisplay';
 import SaveModal from '../components/editor/SaveModal';
 
 const Editor = () => {
-    const { role } = useAppContext();
-    const navigate = useNavigate();
-
     const [text, setText] = useState('');
     const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        console.log('running');
-        if (role !== 'admin') {
-            navigate('/');
-        }
-    }, [role, navigate]);
 
     return (
         <div className='container mg-top-vlg auto'>
