@@ -31,8 +31,6 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path='/clubhouse' element={<Clubhouse />} />
-                        <Route path='/admin' element={<Admin />} />
-                        <Route path='/editor' element={<Editor />} />
                     </Route>
                 </Routes>
             </Router>

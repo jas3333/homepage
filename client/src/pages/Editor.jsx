@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { useAppContext } from '../hooks/appContext';
+import { useState } from 'react';
 
 import TextArea from '../components/editor/TextArea';
 import MarkDownDisplay from '../components/editor/MarkDownDisplay';
