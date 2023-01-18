@@ -8,7 +8,7 @@ const Programming = () => {
 
     const getBlog = async () => {
         try {
-            const response = await axios.get('http://localhost:5012/api/v1/blog');
+            const response = await axios.get('/api/v1/blog');
             const blogsList = response.data;
             setBlogs(blogsList.filter((blog) => blog.category === 'programming'));
             console.log(blogs);

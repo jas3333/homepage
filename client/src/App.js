@@ -8,8 +8,6 @@ import Login from './pages/Login';
 import Apps from './pages/Apps';
 import Home from './pages/Home';
 import Clubhouse from './pages/Clubhouse';
-import Admin from './pages/Admin';
-import Editor from './pages/Editor';
 import Register from './pages/Register';
 import Sidebar from './components/sidebar/Sidebar';
 

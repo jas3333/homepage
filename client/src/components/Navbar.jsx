@@ -27,9 +27,12 @@ const Navbar = () => {
                         Login
                     </Link>
                 )}
-                <Link className='nav-links mg-right-md' to='/clubhouse'>
-                    Clubhouse
-                </Link>
+
+                {user && (
+                    <Link className='nav-links mg-right-md' to='/clubhouse'>
+                        Clubhouse
+                    </Link>
+                )}
             </div>
         </nav>
     );
