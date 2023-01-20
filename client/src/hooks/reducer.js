@@ -1,3 +1,5 @@
+import { initialState } from './appContext';
+
 const reducer = (state, action) => {
     if (action.type === 'SHOW_ALERT') {
         return { ...state, showAlert: true, alertType: 'danger', alertText: 'Please provide all values!' };
@@ -25,6 +27,9 @@ const reducer = (state, action) => {
     }
     if (action.type === 'AUTH_CHECK_SUCCESS') {
         return { ...state, user: action.payload.username, _id: action.payload._id, role: action.payload.role };
+    }
+    if (action.type === 'LOGOUT_USER') {
+        return { ...initialState, user: null };
     }
 
     throw new Error(`no such action: ${action.type}`);

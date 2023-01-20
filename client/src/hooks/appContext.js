@@ -65,19 +65,27 @@ const AppProvider = ({ children }) => {
         }
     );
 
+    const logoutUser = async () => {
+        dispatch({ type: 'LOGOUT_USER' });
+    };
+
     const authCheck = async () => {
         try {
             const response = await authFetch.get('/users/getCurrentUser');
             console.log(response.data);
             dispatch({ type: 'AUTH_CHECK_SUCCESS', payload: response.data });
-        } catch (error) {}
+        } catch (error) {
+            if (error.response.status === 401) {
+                dispatch({ type: 'LOGOUT_USER' });
+            }
+        }
     };
 
     useEffect(() => {
         authCheck();
     }, []);
 
-    const contextValues = { ...state, displayAlert, clearAlert, registerUser, loginUser, authCheck };
+    const contextValues = { ...state, displayAlert, clearAlert, registerUser, loginUser, authCheck, logoutUser };
 
     return <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>;
 };

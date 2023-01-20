@@ -8,7 +8,7 @@ const Navbar = () => {
         <nav className='navbar space'>
             <div className='container'>
                 <Link to='/'>
-                    <h3>Hello, {user}</h3>
+                    <h3>Hello, {`${user ? `${user}` : 'guest'}`}</h3>
                 </Link>
             </div>
             <div className='container'>
