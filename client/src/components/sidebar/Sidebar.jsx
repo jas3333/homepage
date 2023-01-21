@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { FaFolder, FaLightbulb, FaDoorOpen } from 'react-icons/fa';
-import { AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineLogout, AiFillBook } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../hooks/appContext';
 
@@ -28,6 +28,12 @@ const Sidebar = () => {
             <div className='container align '>
                 <FaLightbulb className='mg-right-sm' />
                 <Link className='nav-links'>Request Features</Link>
+            </div>
+            <div className='container align '>
+                <AiFillBook className='mg-right-sm' />
+                <Link className='nav-links' to='/recipeEditor'>
+                    Recipes
+                </Link>
             </div>
             <div className='container align '>
                 <AiOutlineLogout className='mg-right-sm' />

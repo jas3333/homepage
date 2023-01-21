@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Clubhouse from './pages/Clubhouse';
 import Register from './pages/Register';
 import Sidebar from './components/sidebar/Sidebar';
+import RecipeEditor from './components/RecipeEditor';
 
 import ProtectedRoute from './pages/ProtectedRoute';
 
@@ -29,6 +30,7 @@ function App() {
                     <Route path='/register' element={<Register />} />
                     <Route element={<ProtectedRoute />}>
                         <Route path='/clubhouse' element={<Clubhouse />} />
+                        <Route path='/recipeEditor' element={<RecipeEditor />} />
                     </Route>
                 </Routes>
             </Router>

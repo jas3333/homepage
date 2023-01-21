@@ -44,6 +44,7 @@ const loginUser = async (req, res) => {
 
         const token = generateJWT(user.id, user.role);
         attachCookies(res, token);
+
         res.status(200).json({ _id: user._id, username: user.username, role: user.role });
     } else {
         res.status(400);
@@ -53,7 +54,6 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     const allUsers = await User.find({}).select('-password');
-
     res.status(200).json({ allUsers });
 };
 

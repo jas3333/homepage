@@ -72,7 +72,6 @@ const AppProvider = ({ children }) => {
     const authCheck = async () => {
         try {
             const response = await authFetch.get('/users/getCurrentUser');
-            console.log(response.data);
             dispatch({ type: 'AUTH_CHECK_SUCCESS', payload: response.data });
         } catch (error) {
             if (error.response.status === 401) {
